@@ -1,5 +1,10 @@
 import React from 'react'
 import classnames from 'classnames'
+import { Table, TableSortLabel } from '@material-ui/core'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
+import TableCell from '@material-ui/core/TableCell'
+import TableBody from '@material-ui/core/TableBody'
 //
 import _ from './utils'
 import Pagination from './pagination'
@@ -152,7 +157,7 @@ export default {
     getFooterProps: emptyObj,
     filterMethod: undefined,
     filterAll: false,
-    sortMethod: undefined,
+    sortMethod: undefined
   },
 
   // Global Expander Column Defaults
@@ -160,7 +165,7 @@ export default {
     sortable: false,
     resizable: false,
     filterable: false,
-    width: 35,
+    width: 35
   },
 
   pivotDefaults: {
@@ -180,54 +185,72 @@ export default {
 
   // Components
   TableComponent: ({ children, className, ...rest }) => (
-    <div
+    <Table
       className={classnames('rt-table', className)}
-      role="grid"
+      role='grid'
       // tabIndex='0'
       {...rest}
     >
       {children}
-    </div>
+    </Table>
   ),
-  TheadComponent: _.makeTemplateComponent('rt-thead', 'Thead'),
-  TbodyComponent: _.makeTemplateComponent('rt-tbody', 'Tbody'),
-  TrGroupComponent: ({ children, className, ...rest }) => (
-    <div className={classnames('rt-tr-group', className)} role="rowgroup" {...rest}>
+  TheadComponent: ({ children, className, ...rest }) => (
+    <TableHead
+      className={classnames(className)}
+      role='grid'
+      // tabIndex='0'
+      {...rest}
+    >
       {children}
-    </div>
+    </TableHead>
+  ),
+  TbodyComponent: ({ children, className, ...rest }) => (
+    <TableBody
+      className={classnames(className)}
+      role='grid'
+      // tabIndex='0'
+      {...rest}
+    >
+      {children}
+    </TableBody>
+  ),
+  TrGroupComponent: ({ children, className, ...rest }) => (
+    <TableRow className={classnames('rt-tr-group', className)} role='rowgroup' {...rest}>
+      {children}
+    </TableRow>
   ),
   TrComponent: ({ children, className, ...rest }) => (
-    <div className={classnames('rt-tr', className)} role="row" {...rest}>
+    <TableRow className={classnames(className)} role='row' {...rest}>
       {children}
-    </div>
+    </TableRow>
   ),
   ThComponent: ({
     toggleSort, className, children, ...rest
   }) => (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-    <div
+    <TableHead
       className={classnames('rt-th', className)}
       onClick={e => toggleSort && toggleSort(e)}
-      role="columnheader"
-      tabIndex="-1" // Resolves eslint issues without implementing keyboard navigation incorrectly
+      role='columnheader'
+      tabIndex='-1' // Resolves eslint issues without implementing keyboard navigation incorrectly
       {...rest}
     >
       {children}
-    </div>
+    </TableHead>
   ),
   TdComponent: ({
     toggleSort, className, children, ...rest
   }) => (
-    <div className={classnames('rt-td', className)} role="gridcell" {...rest}>
+    <TableCell className={classnames(className)} role='gridcell' {...rest}>
       {children}
-    </div>
+    </TableCell>
   ),
   TfootComponent: _.makeTemplateComponent('rt-tfoot', 'Tfoot'),
   FilterComponent: ({ filter, onChange, column }) => (
     <input
-      type="text"
+      type='text'
       style={{
-        width: '100%',
+        width: '100%'
       }}
       placeholder={column.Placeholder}
       value={filter ? filter.value : ''}
@@ -261,10 +284,10 @@ export default {
     className, loading, loadingText, ...rest
   }) => (
     <div className={classnames('-loading', { '-active': loading }, className)} {...rest}>
-      <div className="-loading-inner">{loadingText}</div>
+      <div className='-loading-inner'>{loadingText}</div>
     </div>
   ),
   NoDataComponent: _.makeTemplateComponent('rt-noData', 'NoData'),
   ResizerComponent: _.makeTemplateComponent('rt-resizer', 'Resizer'),
-  PadRowComponent: () => <span>&nbsp;</span>,
+  PadRowComponent: () => <span>&nbsp;</span>
 }
