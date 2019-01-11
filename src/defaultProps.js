@@ -186,8 +186,7 @@ export default {
   // Components
   TableComponent: ({ children, className, ...rest }) => (
     <Table
-      className={classnames('rt-table', className)}
-      role='grid'
+      className={classnames(className)}
       // tabIndex='0'
       {...rest}
     >
@@ -197,7 +196,6 @@ export default {
   TheadComponent: ({ children, className, ...rest }) => (
     <TableHead
       className={classnames(className)}
-      role='grid'
       // tabIndex='0'
       {...rest}
     >
@@ -207,7 +205,6 @@ export default {
   TbodyComponent: ({ children, className, ...rest }) => (
     <TableBody
       className={classnames(className)}
-      role='grid'
       // tabIndex='0'
       {...rest}
     >
@@ -215,12 +212,12 @@ export default {
     </TableBody>
   ),
   TrGroupComponent: ({ children, className, ...rest }) => (
-    <TableRow className={classnames('rt-tr-group', className)} role='rowgroup' {...rest}>
+    <TableRow className={classnames(className)} {...rest}>
       {children}
     </TableRow>
   ),
   TrComponent: ({ children, className, ...rest }) => (
-    <TableRow className={classnames(className)} role='row' {...rest}>
+    <TableRow className={classnames(className)} {...rest}>
       {children}
     </TableRow>
   ),
@@ -229,9 +226,8 @@ export default {
   }) => (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events
     <TableHead
-      className={classnames('rt-th', className)}
+      className={classnames(className)}
       onClick={e => toggleSort && toggleSort(e)}
-      role='columnheader'
       tabIndex='-1' // Resolves eslint issues without implementing keyboard navigation incorrectly
       {...rest}
     >
@@ -241,7 +237,7 @@ export default {
   TdComponent: ({
     toggleSort, className, children, ...rest
   }) => (
-    <TableCell className={classnames(className)} role='gridcell' {...rest}>
+    <TableCell className={classnames(className)}{...rest}>
       {children}
     </TableCell>
   ),
