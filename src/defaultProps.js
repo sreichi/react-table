@@ -212,9 +212,9 @@ export default {
     </TableBody>
   ),
   TrGroupComponent: ({ children, className, ...rest }) => (
-    <TableRow className={classnames(className)} {...rest}>
+    <div className={classnames(className)} {...rest}>
       {children}
-    </TableRow>
+    </div>
   ),
   TrComponent: ({ children, className, ...rest }) => (
     <TableRow className={classnames(className)} {...rest}>
@@ -225,14 +225,14 @@ export default {
     toggleSort, className, children, ...rest
   }) => (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-    <TableHead
+    <TableCell
       className={classnames(className)}
       onClick={e => toggleSort && toggleSort(e)}
       tabIndex='-1' // Resolves eslint issues without implementing keyboard navigation incorrectly
       {...rest}
     >
       {children}
-    </TableHead>
+    </TableCell>
   ),
   TdComponent: ({
     toggleSort, className, children, ...rest
